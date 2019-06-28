@@ -9,25 +9,12 @@
 import SwiftUI
 
 struct ContentView : View {
-    @State var name: String = ""
-    @State var emailAddress = ""
-    @State var password: String = ""
+    @State var celsius: Double = 0
     
     var body: some View {
         VStack {
-            TextField($name, placeholder: Text("Enter your name"))
-            .textFieldStyle(.roundedBorder)
-            .padding()
-            
-            TextField($emailAddress, placeholder: Text("email@email.com"))
-            .textFieldStyle(.roundedBorder)
-            .padding()
-            
-            SecureField($password, placeholder: Text("Password"))
-            .textFieldStyle(.roundedBorder)
-            .padding()
-            Text("You entered: \(password)")
-            Spacer()
+            Slider(value: $celsius, from: -100, through: 100, by: 0.1)
+            Text("\(celsius) Celsius is \(celsius * 9 / 5 + 32) Fahrenheit")
         }
     }
 }
