@@ -9,35 +9,27 @@
 import SwiftUI
 import Combine
 
+struct Taskrow: View {
+    var body: some View {
+        Text("Task data goes here")
+    }
+}
+
 struct ContentView : View {
-    @State var users = ["Nikos", "Kostas", "Jiannis", "Kathrin", "Karin", "Christina"]
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(users.identified(by: \.self)) { user in
-                    Text(user)
-                }
-                .onMove(perform: move)
-                .onDelete(perform: delete)
+        List {
+            Section(header: Text("Important tasks")) {
+                Taskrow()
+                Taskrow()
+                Taskrow()
             }
-                .navigationBarItems(trailing: EditButton())
-        }
-    }
-    
-    func delete(at offsets: IndexSet) {
-        if let first = offsets.first {
-            users.remove(at: first)
-        }
-    }
-    
-    func move(from source: IndexSet, to destination: Int) {
-        //sort the indexes low to high
-        let reversedSource = source.sorted()
-        
-        // then loop from the back to avoid reordering problems
-        for index in reversedSource.reversed() {
-            users.insert(users.remove(at: index), at: destination)
+            Section(header: Text("Other tasks"), footer: Text("End")) {
+                Taskrow()
+                Taskrow()
+                Taskrow()
+                Taskrow()
+            }
         }
     }
 }
