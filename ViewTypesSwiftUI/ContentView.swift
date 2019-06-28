@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct Result {
+struct Result: Identifiable {
     var id = UUID()
     var score: Int
 }
@@ -19,7 +19,7 @@ struct ContentView : View {
     
     var body: some View {
         VStack{
-            ForEach(results.identified(by: \.id)) { result in
+            ForEach(results) { result in
                 Text("Result: \(result.score)")
                 .padding()
             }
