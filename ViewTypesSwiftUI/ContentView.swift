@@ -9,12 +9,16 @@
 import SwiftUI
 
 struct ContentView : View {
+    
+    let colors: [Color] = [.red, .green, .blue]
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            ForEach((1...10).reversed()) {
-                Text("\($0)...")
+        VStack{
+            ForEach(colors.identified(by: \.self)) { color in
+                Text(color.description.capitalized)
+                .padding()
+                .background(color)
             }
-            Text("Ready or not, here I come!")
         }
     }
 }
