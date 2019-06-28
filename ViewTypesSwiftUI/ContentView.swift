@@ -9,17 +9,15 @@
 import SwiftUI
 
 struct ContentView : View {
-    @State private var scale: Length = 1.0
     
     var body: some View {
         Image("example-image")
-        .scaleEffect(scale)
         
         .gesture(
-        TapGesture()
-            .onEnded({ (_) in
-                self.scale += 0.1
-            })
+            LongPressGesture(minimumDuration: 2)
+                .onEnded({ (_) in
+                    print("Pressed!")
+                })
         )
     }
 }
