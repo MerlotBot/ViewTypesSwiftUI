@@ -10,12 +10,11 @@ import SwiftUI
 
 struct ContentView : View {
     var body: some View {
-        Group {
-            if Bool.random() {
-                Image("example-image")
-            } else {
-                Text("Better luck next time")
+        VStack(alignment: .leading) {
+            ForEach((1...10).reversed()) {
+                Text("\($0)...")
             }
+            Text("Ready or not, here I come!")
         }
     }
 }
