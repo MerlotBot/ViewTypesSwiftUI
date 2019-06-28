@@ -11,39 +11,19 @@ import Combine
 
 
 struct ContentView : View {
-    @State var enableLogging = false
-    
-    @State var selectedColor = 0
-    @State var colors = ["Red", "Blue", "Green"]
+    var strengths = ["Mild", "Medium", "Mature"]
+    @State var selectedStrength = 0
     
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    SegmentedControl(selection: $selectedColor) {
-                        ForEach(0..<colors.count) {
-                            Text(self.colors[$0]).tag($0)
+                    Picker(selection: $selectedStrength, label: Text("Strength")) {
+                        ForEach(0..<strengths.count) {
+                            Text(self.strengths[$0]).tag($0)
                         }
                     }
-                    
-                    Toggle(isOn: $enableLogging) {
-                        Text("Enable Logging")
-                    }
-                }
-                
-                Section {
-                    Button(action: {
-                        // activate theme
-                    }) {
-                        Text("Save Changes")
-                    }
-                }
-                
-                Section {
-                    Group {
-                        Text("Hey you!")
-                        Text("What are you doing there?")
-                    }
+                    .pickerStyle(.wheel)
                 }
             }.navigationBarTitle(Text("Settings"))
         }
