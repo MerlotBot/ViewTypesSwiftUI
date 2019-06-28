@@ -17,23 +17,36 @@ struct ContentView : View {
     @State var colors = ["Red", "Blue", "Green"]
     
     var body: some View {
-        Form {
-            SegmentedControl(selection: $selectedColor) {
-                ForEach(0..<colors.count) {
-                    Text(self.colors[$0]).tag($0)
+        NavigationView {
+            Form {
+                Section {
+                    SegmentedControl(selection: $selectedColor) {
+                        ForEach(0..<colors.count) {
+                            Text(self.colors[$0]).tag($0)
+                        }
+                    }
+                    
+                    Toggle(isOn: $enableLogging) {
+                        Text("Enable Logging")
+                    }
                 }
-            }
-            
-            Toggle(isOn: $enableLogging) {
-                Text("Enable Logging")
-            }
-            
-            Button(action: {
-                // activate theme
-            }) {
-                Text("Save Changes")
-            }
-        }.navigationBarTitle(Text("Settings"))
+                
+                Section {
+                    Button(action: {
+                        // activate theme
+                    }) {
+                        Text("Save Changes")
+                    }
+                }
+                
+                Section {
+                    Group {
+                        Text("Hey you!")
+                        Text("What are you doing there?")
+                    }
+                }
+            }.navigationBarTitle(Text("Settings"))
+        }
     }
 }
 
