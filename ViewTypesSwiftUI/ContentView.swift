@@ -11,21 +11,22 @@ import Combine
 
 
 struct ContentView : View {
-    var strengths = ["Mild", "Medium", "Mature"]
-    @State var selectedStrength = 0
+    @State var showingAdvancedOptions = false
+    @State var enableLogging = false
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section {
-                    Picker(selection: $selectedStrength, label: Text("Strength")) {
-                        ForEach(0..<strengths.count) {
-                            Text(self.strengths[$0]).tag($0)
-                        }
-                    }
-                    .pickerStyle(.wheel)
+        Form {
+            Section {
+                Toggle(isOn: $showingAdvancedOptions.animation()) {
+                    Text("Show advanced options")
                 }
-            }.navigationBarTitle(Text("Settings"))
+                
+                if showingAdvancedOptions {
+                    Toggle(isOn: $enableLogging) {
+                        Text("Enable logging")
+                    }
+                }
+            }
         }
     }
 }
