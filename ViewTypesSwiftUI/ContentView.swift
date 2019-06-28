@@ -11,15 +11,16 @@ import SwiftUI
 struct ContentView : View {
     
     @State private var favoriteColor = 0
+    var colors = ["Red", "Green", "Blue"]
     
     var body: some View {
         VStack {
             SegmentedControl(selection: $favoriteColor) {
-                Text("Red").tag(0)
-                Text("Green").tag(1)
-                Text("Blue").tag(2)
+                ForEach(0..<colors.count) { index in
+                    Text(self.colors[index]).tag(index)
+                }
             }
-            Text("Value: \(favoriteColor)")
+            Text("Value: \(colors[favoriteColor])")
         }
     }
 }
