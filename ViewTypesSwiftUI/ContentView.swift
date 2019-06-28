@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView : View {
     @State var name: String = ""
     @State var emailAddress = ""
+    @State var password: String = ""
     
     var body: some View {
         VStack {
@@ -18,9 +19,15 @@ struct ContentView : View {
             .textFieldStyle(.roundedBorder)
             .padding()
             
-            TextField($emailAddress, placeholder: Text("email.email.com"))
+            TextField($emailAddress, placeholder: Text("email@email.com"))
             .textFieldStyle(.roundedBorder)
             .padding()
+            
+            SecureField($password, placeholder: Text("Password"))
+            .textFieldStyle(.roundedBorder)
+            .padding()
+            Text("You entered: \(password)")
+            Spacer()
         }
     }
 }
