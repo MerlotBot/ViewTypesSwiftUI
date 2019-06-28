@@ -8,16 +8,20 @@
 
 import SwiftUI
 
+struct Result {
+    var id = UUID()
+    var score: Int
+}
+
 struct ContentView : View {
     
-    let colors: [Color] = [.red, .green, .blue]
+    let results = [Result(score: 8), Result(score: 5), Result(score: 10)]
     
     var body: some View {
         VStack{
-            ForEach(colors.identified(by: \.self)) { color in
-                Text(color.description.capitalized)
+            ForEach(results.identified(by: \.id)) { result in
+                Text("Result: \(result.score)")
                 .padding()
-                .background(color)
             }
         }
     }
