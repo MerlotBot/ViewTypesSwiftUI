@@ -10,22 +10,16 @@ import SwiftUI
 
 struct ContentView : View {
     
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        return formatter
-    }
-    
-    @State var birthDate = Date()
+    @State private var favoriteColor = 0
     
     var body: some View {
         VStack {
-            DatePicker(
-                $birthDate,
-                maximumDate: Date(),
-                displayedComponents: .date
-            )
-            Text("Date is \(birthDate, formatter: dateFormatter)")
+            SegmentedControl(selection: $favoriteColor) {
+                Text("Red").tag(0)
+                Text("Green").tag(1)
+                Text("Blue").tag(2)
+            }
+            Text("Value: \(favoriteColor)")
         }
     }
 }
