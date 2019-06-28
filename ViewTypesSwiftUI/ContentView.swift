@@ -9,20 +9,31 @@
 import SwiftUI
 import Combine
 
-struct User: Identifiable {
-    var id = UUID()
-    var username = "Anonymous"
-}
 
 struct ContentView : View {
-    let users = [User(), User(), User()]
+    @State var enableLogging = false
+    
+    @State var selectedColor = 0
+    @State var colors = ["Red", "Blue", "Green"]
+    
     var body: some View {
-        List(users) { user in
-            Image("example-image")
-            .resizable()
-                .frame(width: 40, height: 40)
-            Text(user.username)
-        }
+        Form {
+            SegmentedControl(selection: $selectedColor) {
+                ForEach(0..<colors.count) {
+                    Text(self.colors[$0]).tag($0)
+                }
+            }
+            
+            Toggle(isOn: $enableLogging) {
+                Text("Enable Logging")
+            }
+            
+            Button(action: {
+                // activate theme
+            }) {
+                Text("Save Changes")
+            }
+        }.navigationBarTitle(Text("Settings"))
     }
 }
 
