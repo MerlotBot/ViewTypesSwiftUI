@@ -14,8 +14,15 @@ struct ContentView : View {
     
     var body: some View {
         NavigationView {
-            Text("This is a great app")
-                .navigationBarTitle(Text("Welcome"), displayMode: .inline)
+            Text("SwiftUI")
+                .font(.largeTitle)
+                .navigationBarTitle(Text("Welcome"))
+            .navigationBarItems(trailing:
+                Button(action: {
+                    print("Help tapped!")
+                }) {
+                    Text("Help")
+            })
         }
         
     }
