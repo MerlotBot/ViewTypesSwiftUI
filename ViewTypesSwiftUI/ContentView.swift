@@ -7,33 +7,33 @@
 //
 
 import SwiftUI
+import Combine
+
+class UserSettings: BindableObject {
+    var didChange = PassthroughSubject<Void, Never>()
+    
+    var score = 0 {
+        didSet {
+            didChange.send(())
+        }
+    }
+}
 
 struct ContentView : View {
+    @ObjectBinding var settings = UserSettings()
     
     var body: some View {
-        NavigationView {
-            NavigationButton(destination: DetailView()) {
-                Text("Hello World")
+        VStack {
+            Text("Your score is \(settings.score)")
+            Button(action: {
+                self.settings.score += 1
+            }) {
+                Text("Increase score")
             }
-            }.onAppear {
-                print("ContentView appeared!")
-            }.onDisappear {
-                print("ContentView disappeared!")
         }
     }
 }
 
-struct DetailView: View {
-    var body: some View {
-        VStack {
-            Text("Second View")
-            }.onAppear {
-                print("DetailView appeared!")
-            }.onDisappear {
-                print("DetailView disappeared!")
-        }
-    }
-}
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
