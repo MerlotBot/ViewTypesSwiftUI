@@ -9,27 +9,19 @@
 import SwiftUI
 import Combine
 
-struct Taskrow: View {
-    var body: some View {
-        Text("Task data goes here")
-    }
+struct User: Identifiable {
+    var id = UUID()
+    var username = "Anonymous"
 }
 
 struct ContentView : View {
-    
+    let users = [User(), User(), User()]
     var body: some View {
-        List {
-            Section(header: Text("Important tasks")) {
-                Taskrow()
-                Taskrow()
-                Taskrow()
-            }
-            Section(header: Text("Other tasks"), footer: Text("End")) {
-                Taskrow()
-                Taskrow()
-                Taskrow()
-                Taskrow()
-            }
+        List(users) { user in
+            Image("example-image")
+            .resizable()
+                .frame(width: 40, height: 40)
+            Text(user.username)
         }
     }
 }
