@@ -20,17 +20,31 @@ class UserSettings: BindableObject {
 }
 
 struct ContentView : View {
-    @ObjectBinding var settings = UserSettings()
-    
+    @EnvironmentObject var settings: UserSettings
+
     var body: some View {
-        VStack {
-            Text("Your score is \(settings.score)")
-            Button(action: {
-                self.settings.score += 1
-            }) {
-                Text("Increase score")
+        NavigationView {
+            VStack {
+                Text("Your score is \(settings.score)")
+                Button(action: {
+                    self.settings.score += 1
+                }) {
+                    Text("Increase score")
+                }
+                
+                NavigationButton(destination: DetailView()) {
+                    Text("Show Detail View")
+                }
             }
         }
+    }
+}
+
+struct DetailView: View {
+    @EnvironmentObject var settings: UserSettings
+    
+    var body: some View {
+        Text("Score: \(settings.score)")
     }
 }
 
@@ -38,7 +52,7 @@ struct ContentView : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(UserSettings())
     }
 }
 #endif
