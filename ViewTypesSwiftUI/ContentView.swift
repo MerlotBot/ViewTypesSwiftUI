@@ -11,14 +11,27 @@ import SwiftUI
 struct ContentView : View {
     
     var body: some View {
-        Image("example-image")
-        
-        .gesture(
-            DragGesture(minimumDistance: 50)
-                .onEnded({ (_) in
-                    print("Dragged!")
-                })
-        )
+        NavigationView {
+            NavigationButton(destination: DetailView()) {
+                Text("Hello World")
+            }
+            }.onAppear {
+                print("ContentView appeared!")
+            }.onDisappear {
+                print("ContentView disappeared!")
+        }
+    }
+}
+
+struct DetailView: View {
+    var body: some View {
+        VStack {
+            Text("Second View")
+            }.onAppear {
+                print("DetailView appeared!")
+            }.onDisappear {
+                print("DetailView disappeared!")
+        }
     }
 }
 
