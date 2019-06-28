@@ -14,9 +14,9 @@ struct ContentView : View {
         Image("example-image")
         
         .gesture(
-            LongPressGesture(minimumDuration: 2)
+            DragGesture(minimumDistance: 50)
                 .onEnded({ (_) in
-                    print("Pressed!")
+                    print("Dragged!")
                 })
         )
     }
