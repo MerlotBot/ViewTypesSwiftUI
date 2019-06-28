@@ -14,6 +14,7 @@ struct ContentView : View {
     var body: some View {
         VStack {
             TextField($name)
+            .textFieldStyle(.roundedBorder)
             Text("Hello, \(name)")
         }
     }
