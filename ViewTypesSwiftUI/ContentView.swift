@@ -21,7 +21,9 @@ struct ContentView : View {
             Text("Show alert")
         }
             .presentation($showingAlert) {
-                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
+                Alert(title: Text("Are you sure you want to delete this?"), message: Text("There is no undo"), primaryButton: .destructive(Text("Delete")) {
+                    print("Deleting...")
+                }, secondaryButton: .cancel())
         }
         
         
