@@ -11,27 +11,19 @@ import Combine
 
 
 struct ContentView : View {
+    @State var showingAlert = false
     
     var body: some View {
         
-        VStack {
-            Group {
-                Text("Line")
-                Text("Line")
-                Text("Line")
-                Text("Line")
-                Text("Line")
-            }
-            Group {
-                Text("Line")
-                Text("Line")
-                Text("Line")
-                Text("Line")
-                Text("Line")
-                Text("Line")
-                
-            }
+        Button(action: {
+            self.showingAlert = true
+        }) {
+            Text("Show alert")
         }
+            .presentation($showingAlert) {
+                Alert(title: Text("Important message"), message: Text("Wear sunscreen"), dismissButton: .default(Text("Got it!")))
+        }
+        
         
     }
 }
